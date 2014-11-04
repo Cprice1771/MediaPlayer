@@ -1,0 +1,6 @@
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\bin\Debug\MediaPlayerHelper.dll
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\bin\Debug\MediaPlayerHelper.pdb
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\obj\Debug\MediaPlayerHelper.dll
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\obj\Debug\MediaPlayerHelper.pdb
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\obj\Debug\Interop.WMPLib.dll
+C:\Users\Cprice\Documents\Visual Studio 2012\Projects\RobotRampage\MediaPlayerHelper\obj\Debug\MediaPlayerHelper.csproj.ResolveComReference.cache

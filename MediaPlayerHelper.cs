@@ -55,6 +55,8 @@ namespace MediaPlayerHelper
         /// <param name="s">Song to play</param>
         public void Play(SongFile s)
         {
+            if (!File.Exists(s.File))
+                throw new FileNotFoundException("Unable to find the specified file, make sure you selected Copy Always in Visual Studio");
             if (_isPlaying)
             {
                 _player.Stop();

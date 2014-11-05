@@ -57,6 +57,9 @@ namespace MediaPlayerHelper
         {
             if (!File.Exists(s.File))
                 throw new FileNotFoundException("Unable to find the specified file, make sure you selected Copy Always in Visual Studio");
+
+
+
             if (_isPlaying)
             {
                 _player.Stop();
@@ -86,6 +89,8 @@ namespace MediaPlayerHelper
                 _wplayer.controls.play();
                 _isPlaying = true;
             }
+            else
+                throw new FileExtensionException("Unrecognized file extension");
         }
 
         /// <summary>

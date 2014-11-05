@@ -90,7 +90,7 @@ namespace MediaPlayerHelper
                 _isPlaying = true;
             }
             else
-                throw new FileExtensionException("Unrecognized file extension");
+                throw new FileExtensionException("Unrecognized file extension, This library only supports .mp3, .wma, and .wav");
         }
 
         /// <summary>

@@ -110,18 +110,16 @@ namespace MediaPlayerHelper
         /// </summary>
         public void PlaySound(SongFile s)
         {
-            if (Path.GetExtension(s.File) == "wav")
+            string ext = Path.GetExtension(s.File);
+            if (ext == ".wav")
             {
                 _player.SoundLocation = s.File;
 
-                if (_loop)
-                    _player.PlayLooping();
-                else
-                    _player.Play();
+                 _player.Play();
 
                 _isPlaying = true;
             }
-            else if (Path.GetExtension(s.File) == "mp3")
+            else if (Path.GetExtension(s.File) == ".mp3")
             {
                 _wplayer.URL = s.File;
                 _wplayer.controls.play();

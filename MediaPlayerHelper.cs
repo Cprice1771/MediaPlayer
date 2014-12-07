@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace MediaPlayerHelper
 {
@@ -39,12 +42,14 @@ namespace MediaPlayerHelper
         bool _loop;
         System.Media.SoundPlayer _player;
         WMPLib.WindowsMediaPlayer _wplayer;
+        MediaPlayer _effectPlayer;
         bool _isPlaying;
 
         private MediaPlayerHelper()
         {
             _player = new System.Media.SoundPlayer();
             _wplayer = new WMPLib.WindowsMediaPlayer();
+            _effectPlayer = new MediaPlayer();
             Loop = false;
             _isPlaying = false;
         }
@@ -110,21 +115,31 @@ namespace MediaPlayerHelper
         /// </summary>
         public void PlaySound(SongFile s)
         {
+            if (!File.Exists(s.File))
+                throw new FileNotFoundException("Unable to find the specified file, make sure you selected Copy Always in Visual Studio");
+
+            //ThreadPool.QueueUserWorkItem(PlaySoundSync, s);
             string ext = Path.GetExtension(s.File);
             if (ext == ".wav")
             {
-                _player.SoundLocation = s.File;
 
-                 _player.Play();
+                //_player.SoundLocation = s.File;
 
-                _isPlaying = true;
+                //_player.PlaySync();
+                _effectPlayer.Open(new Uri(s.File));
+                _effectPlayer.Play();
+
             }
             else if (Path.GetExtension(s.File) == ".mp3")
             {
-                _wplayer.URL = s.File;
-                _wplayer.controls.play();
-                _isPlaying = true;
+                WMPLib.WindowsMediaPlayer tempPlayer = new WMPLib.WindowsMediaPlayer();
+                tempPlayer.URL = s.File;
+                tempPlayer.settings.setMode("Loop", false);
+                tempPlayer.controls.play();
             }
+
+            
         }
+
     }
 }

@@ -42,16 +42,16 @@ namespace MediaPlayerHelper
         bool _loop;
         System.Media.SoundPlayer _player;
         WMPLib.WindowsMediaPlayer _wplayer;
-        MediaPlayer _effectPlayer;
         bool _isPlaying;
 
         private MediaPlayerHelper()
         {
             _player = new System.Media.SoundPlayer();
             _wplayer = new WMPLib.WindowsMediaPlayer();
-            _effectPlayer = new MediaPlayer();
             Loop = false;
             _isPlaying = false;
+            _wplayer.settings.volume = 5;
+            
         }
 
         /// <summary>
@@ -73,14 +73,18 @@ namespace MediaPlayerHelper
 
             if (Path.GetExtension(s.File) == ".wav")
             {
-                _player.SoundLocation = s.File;
-
-                if (_loop)
-                    _player.PlayLooping();
-                else
-                    _player.Play();
-
+                _wplayer.URL = s.File;
+                _wplayer.controls.play();
                 _isPlaying = true;
+
+                //_player.SoundLocation = s.File;
+
+                //if (_loop)
+                //    _player.PlayLooping();
+                //else
+                //    _player.Play();
+
+                //_isPlaying = true;
             }
             else if (Path.GetExtension(s.File) == ".mp3")
             {
@@ -118,6 +122,8 @@ namespace MediaPlayerHelper
             if (!File.Exists(s.File))
                 throw new FileNotFoundException("Unable to find the specified file, make sure you selected Copy Always in Visual Studio");
 
+            MediaPlayer _effectPlayer = new MediaPlayer();
+            _effectPlayer.Volume = 7;
             //ThreadPool.QueueUserWorkItem(PlaySoundSync, s);
             string ext = Path.GetExtension(s.File);
             if (ext == ".wav")
@@ -132,10 +138,14 @@ namespace MediaPlayerHelper
             }
             else if (Path.GetExtension(s.File) == ".mp3")
             {
-                WMPLib.WindowsMediaPlayer tempPlayer = new WMPLib.WindowsMediaPlayer();
-                tempPlayer.URL = s.File;
-                tempPlayer.settings.setMode("Loop", false);
-                tempPlayer.controls.play();
+                //WMPLib.WindowsMediaPlayer tempPlayer = new WMPLib.WindowsMediaPlayer();
+                //tempPlayer.URL = s.File;
+                //tempPlayer.settings.volume = 7;
+                //tempPlayer.settings.setMode("Loop", false);
+                //tempPlayer.controls.play();
+
+                _effectPlayer.Open(new Uri(s.File));
+                _effectPlayer.Play();
             }
 
             

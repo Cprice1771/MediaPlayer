@@ -76,15 +76,6 @@ namespace MediaPlayerHelper
                 _wplayer.URL = s.File;
                 _wplayer.controls.play();
                 _isPlaying = true;
-
-                //_player.SoundLocation = s.File;
-
-                //if (_loop)
-                //    _player.PlayLooping();
-                //else
-                //    _player.Play();
-
-                //_isPlaying = true;
             }
             else if (Path.GetExtension(s.File) == ".mp3")
             {
@@ -124,26 +115,16 @@ namespace MediaPlayerHelper
 
             MediaPlayer _effectPlayer = new MediaPlayer();
             _effectPlayer.Volume = 7;
-            //ThreadPool.QueueUserWorkItem(PlaySoundSync, s);
             string ext = Path.GetExtension(s.File);
             if (ext == ".wav")
             {
 
-                //_player.SoundLocation = s.File;
-
-                //_player.PlaySync();
                 _effectPlayer.Open(new Uri(s.File));
                 _effectPlayer.Play();
 
             }
             else if (Path.GetExtension(s.File) == ".mp3")
             {
-                //WMPLib.WindowsMediaPlayer tempPlayer = new WMPLib.WindowsMediaPlayer();
-                //tempPlayer.URL = s.File;
-                //tempPlayer.settings.volume = 7;
-                //tempPlayer.settings.setMode("Loop", false);
-                //tempPlayer.controls.play();
-
                 _effectPlayer.Open(new Uri(s.File));
                 _effectPlayer.Play();
             }
